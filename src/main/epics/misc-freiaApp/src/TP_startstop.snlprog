@@ -1,0 +1,4 @@
+TP_startstop_SNCFLAGS += +r -c +d +s
+misc-freia_DBD += TP_startstop.dbd
+misc-freia_SRCS += TP_startstop.st
+misc-freia_LIBS += seq pv
