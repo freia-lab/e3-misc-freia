@@ -189,7 +189,7 @@ $(trace_0_y_pv_value)</tooltip>
     <rules />
     <axis_1_visible>true</axis_1_visible>
     <trace_0_update_delay>1000</trace_0_update_delay>
-    <pv_name>$(P):Td</pv_name>
+    <pv_name>$(P)_Td</pv_name>
     <name>XY Graph</name>
     <axis_0_auto_scale>true</axis_0_auto_scale>
     <axis_0_minimum>0.0</axis_0_minimum>

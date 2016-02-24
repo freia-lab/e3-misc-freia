@@ -1,6 +1,6 @@
 # Record template for DMT340 measurement data
 #ai record template for register inputs
-record(ai, "$(P):Td") {
+record(ai, "$(P)_Td") {
     field(DESC,"Dewpoint/frost point temperature")
     field(DTYP,"asynFloat64")
     field(INP,"@asyn($(PORT) 8)FLOAT32_LE")
@@ -16,7 +16,7 @@ record(ai, "$(P):Td") {
     field(HHSV,"MAJOR")
     field(SCAN,"$(SCAN)")
 }
-record(ai, "$(P):x") {
+record(ai, "$(P)_x") {
     field(DESC,"Mixing ratio")
     field(DTYP,"asynFloat64")
     field(INP,"@asyn($(PORT) 16)FLOAT32_LE")
@@ -29,7 +29,7 @@ record(ai, "$(P):x") {
     field(SCAN,"$(SCAN)")
 }
 
-record(ai, "$(P):h2o") {
+record(ai, "$(P)_h2o") {
     field(DESC,"Water vapor in He")
     field(DTYP,"asynFloat64")
     field(INP,"@asyn($(PORT) 20)FLOAT32_LE")
