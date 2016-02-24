@@ -11,6 +11,7 @@ include $(TOP)/configure/CONFIG
 # Create and install (or just install)
 # databases, templates, substitutions like this
 DB += rf_itlck_hb.db 
+DB += dmt340_meas.template
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
