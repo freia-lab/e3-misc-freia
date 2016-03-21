@@ -36,6 +36,7 @@ DBD += misc-freia.dbd
 # misc-freia.dbd will be made up from base.dbd and module dbds listed below:
 misc-freia_DBD += base.dbd
 misc-freia_DBD += TP_startstop.dbd
+misc-freia_DBD += bptPressTemp.dbd
 
 # misc-freia_registerRecordDeviceDriver.cpp derives from misc-freia.dbd
 misc-freia_SRCS += misc-freia_registerRecordDeviceDriver.cpp

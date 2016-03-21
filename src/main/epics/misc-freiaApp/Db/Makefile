@@ -12,6 +12,7 @@ include $(TOP)/configure/CONFIG
 # databases, templates, substitutions like this
 DB += rf_itlck_hb.db 
 DB += dmt340_meas.template
+DB += tfromp.template
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add
