@@ -12,4 +12,5 @@ dbLoadRecords "longin.template", "P=$(DMT_PREFIX)_, R=sErrCode2, PORT=DMT_STATUS
 dbLoadRecords "dmt340_meas.template", "P=$(DMT_PREFIX), PORT=DMT_DATA_F, SCAN=I/O Intr"
 dbLoadRecords "tfromp.template", "P=CstatH-LHe, X=101"
 dbLoadRecords "tfromp.template", "P=CstatH-LHe, X=102"
+dbLoadRecords "from_rasp_pi.db"
 
