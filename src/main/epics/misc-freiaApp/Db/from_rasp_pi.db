@@ -22,7 +22,7 @@ record(ai, "Cryo-Rec:LP:GasBagSonar") {
 }
 
 record(ai, "Cryo-Rec:LP:GasBagVol") {
-   field (DESC, "Volum balloon")
+   field (DESC, "Volume balloon")
    field (EGU, "m3")
    field (DTYP, "Soft Channel")
    field (LOPR, "0")
@@ -52,7 +52,7 @@ record(ai, "Env-FREIA:PT001:sRdV") {
    field (LOPR, "900")
    field (HOPR, "1100.0")
    field (PREC, "1")
-   field (INP, "Weather:PressureT")
+   field (INP, "Weather:Pressure")
    field (SCAN, "10 second")
 }
 
