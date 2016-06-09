@@ -10,6 +10,7 @@ USR_DEPENDENCIES += seq
 USR_DEPENDENCIES += modbus
 
 HEADERS += $(wildcard src/main/epics/misc-freiaApp/src/*.h)
+SOURCES += $(wildcard src/main/epics/misc-freiaApp/src/*.c)
 SOURCES += $(wildcard src/main/epics/misc-freiaApp/src/*.cpp)
 SOURCES += $(wildcard src/main/epics/misc-freiaApp/src/*.st)
 

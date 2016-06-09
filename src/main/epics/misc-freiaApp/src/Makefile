@@ -37,9 +37,11 @@ DBD += misc-freia.dbd
 misc-freia_DBD += base.dbd
 misc-freia_DBD += TP_startstop.dbd
 misc-freia_DBD += bptPressTemp.dbd
+misc-freia_DBD += subRecFunc.dbd
 
 # misc-freia_registerRecordDeviceDriver.cpp derives from misc-freia.dbd
 misc-freia_SRCS += misc-freia_registerRecordDeviceDriver.cpp
+misc-freia_SRCS += subRecFunc.c
 
 # Build the main IOC entry point on workstation OSs.
 misc-freia_SRCS_DEFAULT += misc-freiaMain.cpp

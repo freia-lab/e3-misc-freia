@@ -22,3 +22,20 @@ record(bo, "$(P):Reset") {
    field (PINI, "YES")
    field (OUT, "$(P):sHB-CNT")
 }
+
+record(aSub, "$(P)-trg:sTime-aSub")
+{
+  field(DESC, "LabVIEW time stamp decoding")
+  field(INPA, "$(P)-trg:sTime MSI")
+  field(FTA, "DOUBLE")
+  field(FTVA, "STRING")
+  field(OUTA, "$(P)-trg:sTimeStamp MS")
+  field(FLNK, "$(P)-trg:sTimeStamp PP")
+  field(SNAM, "myAsubProcess")
+  field(SCAN, "1 second")
+}
+
+record(stringin, "$(P)-trg:sTimeStamp")
+{
+  field(DESC, "Time stamp string")
+}
