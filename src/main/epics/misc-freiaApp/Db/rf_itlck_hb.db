@@ -39,3 +39,71 @@ record(stringin, "$(P)-trg:sTimeStamp")
 {
   field(DESC, "Time stamp string")
 }
+
+record(aSub, "$(P)-trg:sTime1-aSub")
+{
+  field(DESC, "LabVIEW time stamp decoding")
+  field(INPA, "$(P)-trg:sTime-1 MSI")
+  field(FTA, "DOUBLE")
+  field(FTVA, "STRING")
+  field(OUTA, "$(P)-trg:sTimeStamp-1 MS")
+  field(FLNK, "$(P)-trg:sTimeStamp-1 PP")
+  field(SNAM, "myAsubProcess")
+  field(SCAN, "1 second")
+}
+
+record(stringin, "$(P)-trg:sTimeStamp-1")
+{
+  field(DESC, "Time stamp string")
+}
+
+record(aSub, "$(P)-trg:sTime2-aSub")
+{
+  field(DESC, "LabVIEW time stamp decoding")
+  field(INPA, "$(P)-trg:sTime-2 MSI")
+  field(FTA, "DOUBLE")
+  field(FTVA, "STRING")
+  field(OUTA, "$(P)-trg:sTimeStamp-2 MS")
+  field(FLNK, "$(P)-trg:sTimeStamp-2 PP")
+  field(SNAM, "myAsubProcess")
+  field(SCAN, "1 second")
+}
+
+record(stringin, "$(P)-trg:sTimeStamp-2")
+{
+  field(DESC, "Time stamp string")
+}
+
+record(aSub, "$(P)-trg:sTime3-aSub")
+{
+  field(DESC, "LabVIEW time stamp decoding")
+  field(INPA, "$(P)-trg:sTime-3 MSI")
+  field(FTA, "DOUBLE")
+  field(FTVA, "STRING")
+  field(OUTA, "$(P)-trg:sTimeStamp-3 MS")
+  field(FLNK, "$(P)-trg:sTimeStamp-3 PP")
+  field(SNAM, "myAsubProcess")
+  field(SCAN, "1 second")
+}
+
+record(stringin, "$(P)-trg:sTimeStamp-3")
+{
+  field(DESC, "Time stamp string")
+}
+
+record(aSub, "$(P)-trg:sTime4-aSub")
+{
+  field(DESC, "LabVIEW time stamp decoding")
+  field(INPA, "$(P)-trg:sTime-4 MSI")
+  field(FTA, "DOUBLE")
+  field(FTVA, "STRING")
+  field(OUTA, "$(P)-trg:sTimeStamp-4 MS")
+  field(FLNK, "$(P)-trg:sTimeStamp-4 PP")
+  field(SNAM, "myAsubProcess")
+  field(SCAN, "1 second")
+}
+
+record(stringin, "$(P)-trg:sTimeStamp-4")
+{
+  field(DESC, "Time stamp string")
+}
