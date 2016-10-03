@@ -15,13 +15,43 @@ record(calc, "$(P):sAlive") {
 }
 
 
-record(bo, "$(P):Reset") {
-   field (HIGH, "0.5")
-   field (ZNAM, "Iddle")
-   field (ONAM, "CmdReset")
-   field (PINI, "YES")
-   field (OUT, "$(P):sHB-CNT")
+#record(bo, "$(P):Reset") {
+#   field (HIGH, "0.5")
+#   field (ZNAM, "Iddle")
+#   field (ONAM, "CmdReset")
+#   field (PINI, "YES")
+#   field (OUT, "$(P):sHB-CNT")
+#}
+
+record(calc, "$(P):sAlive-1") {
+   field (INPA, "$(P):sHB-CNT")
+   field (INPB, "$(P):sAlive-1.LA")
+   field (INPC, "$(P):cArm-1")
+   field (CALC, "((A#B)&&C)?1:0")
+   field (SCAN, "5 second")
 }
+record(calc, "$(P):sAlive-2") {
+   field (INPA, "$(P):sHB-CNT")
+   field (INPB, "$(P):sAlive-2.LA")
+   field (INPC, "$(P):cArm-2")
+   field (CALC, "((A#B)&&C)?1:0")
+   field (SCAN, "5 second")
+}
+record(calc, "$(P):sAlive-3") {
+   field (INPA, "$(P):sHB-CNT")
+   field (INPB, "$(P):sAlive-3.LA")
+   field (INPC, "$(P):cArm-3")
+   field (CALC, "((A#B)&&C)?1:0")
+   field (SCAN, "5 second")
+}
+record(calc, "$(P):sAlive-4") {
+   field (INPA, "$(P):sHB-CNT")
+   field (INPB, "$(P):sAlive-4.LA")
+   field (INPC, "$(P):cArm-4")
+   field (CALC, "((A#B)&&C)?1:0")
+   field (SCAN, "5 second")
+}
+
 
 record(aSub, "$(P)-trg:sTime-aSub")
 {
