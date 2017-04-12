@@ -37,9 +37,20 @@ record(ai, "Cryo:HeVol:Total") {
    field (EGU, "m3")
    field (DTYP, "Soft Channel")
    field (LOPR, "0")
-   field (HOPR, "120.0")
+   field (HOPR, "3000.0")
    field (PREC, "1")
    field (INP, "Sonar:Total")
+   field (SCAN, "10 second")
+}
+
+record(ai, "Cryo:HeVol:Total-Expected") {
+   field (DESC, "Helium's expected volume")
+   field (EGU, "m3")
+   field (DTYP, "Soft Channel")
+   field (LOPR, "0")
+   field (HOPR, "3000.0")
+   field (PREC, "1")
+   field (INP, "HeliumVolume:Expected")
    field (SCAN, "10 second")
 }
 
