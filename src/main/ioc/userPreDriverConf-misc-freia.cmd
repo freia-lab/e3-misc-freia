@@ -1,7 +1,6 @@
 ###################################################################
 ## User provided PLC or fast controller driver pre configuration ##
 ###################################################################
-require modbus
 
 # Documentation: http://cars9.uchicago.edu/software/epics/modbusDoc.html
 

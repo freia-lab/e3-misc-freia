@@ -14,6 +14,7 @@ DB += rf_itlck_hb.db
 DB += dmt340_meas.template
 DB += tfromp.template
 DB += from_rasp_pi.db
+DB += freia-cRIO-ADC.db
 
 #----------------------------------------------------
 # If <anyname>.db template is not named <anyname>*.template add

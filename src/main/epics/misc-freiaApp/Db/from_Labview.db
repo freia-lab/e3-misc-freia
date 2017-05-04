@@ -1,15 +1,4 @@
-# IPNO coupler system
-record(ao, "Cav1-Coupl:MultipactDet:I") {
-   field (DESC, "Current from the multipacting detector")
-   field (EGU, "A")
-   field (DTYP, "Soft Channel")
-   field (LOPR, "0")
-   field (HOPR, "500e-6")
-#   field (PREC, "4")
-#   field (INP, "Sonar:T")
-#   field (SCAN, "1 second")
-}
-
+# From LabView power coupler conditioning program
 record(ao, "LLRF:SigGen:PlsWdth") {
    field (DESC, "Pulse width set in LabView program")
    field (EGU, "µs")
