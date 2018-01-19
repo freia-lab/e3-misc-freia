@@ -2,7 +2,6 @@
 ## DB loading                              ##
 #############################################
 
-dbLoadRecords("rf_itlck_hb.db","P=IntlkF-cRio1:Intlk")
 #dbLoadTemplate(xxx.substitutions)
 
 dbLoadRecords "longin.template", "P=$(DMT_PREFIX)_, R=sOk, PORT=DMT_STATUS, OFFSET=0, DATA_TYPE=UINT16, PREC=0, SCAN=I/O Intr, LOPR=0, HOPR=1"
@@ -14,5 +13,4 @@ dbLoadRecords "tfromp.template", "P=CstatH-LHe, X=101"
 dbLoadRecords "tfromp.template", "P=CstatH-LHe, X=102"
 dbLoadRecords "from_rasp_pi.db"
 dbLoadRecords "from_Labview.db"
-dbLoadRecords("freia-cRIO-ADC.db","INDX=2, NAME=Cav1-Coupl:MultipactDet:I, EGU=mA, LINR=LINEAR, LOPR=0.0, HOPR=10.0, EOFF=0.0, ESLO=0.001")
 
