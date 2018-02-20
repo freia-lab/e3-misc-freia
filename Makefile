@@ -1,5 +1,5 @@
 EXCLUDE_ARCHS += eldk
-#EXCLUDE_VERSIONS += 3.15.2
+EXCLUDE_VERSIONS += 3.14
 
 include ${EPICS_ENV_PATH}/module.Makefile
 
@@ -7,7 +7,8 @@ include ${EPICS_ENV_PATH}/module.Makefile
 PROJECT = ioc_misc_freia
 
 #USR_DEPENDENCIES += seq
-USR_DEPENDENCIES += modbus
+USR_DEPENDENCIES += autosave,5.7+
+USR_DEPENDENCIES += modbus,2.9+
 
 HEADERS += $(wildcard src/main/epics/misc-freiaApp/src/*.h)
 SOURCES += $(wildcard src/main/epics/misc-freiaApp/src/*.c)
@@ -16,4 +17,6 @@ SOURCES += $(wildcard src/main/epics/misc-freiaApp/src/*.st)
 
 STARTUPS = $(wildcard src/main/ioc/*.cmd)
 
-OPIS = src/main/boy
+MISCS += src/main/ioc/ioc-misc-freia.req
+
+OPIS = opi

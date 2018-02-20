@@ -1,0 +1,20 @@
+# PuddlePeeker.proto
+Terminator = CR LF;
+
+get_analog {
+   out "A\$1?";
+   in  "A\$1 %f";
+   ExtraInput = Ignore;
+}
+
+set_bit {
+   out "DO\$1 %u";
+#   in  "DO\$1 %u";
+   ExtraInput = Ignore;
+}
+
+get_bit {
+   out "DI\$1?";
+   in  "DI\$1 %u";
+   ExtraInput = Ignore;
+}

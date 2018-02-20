@@ -13,4 +13,6 @@ dbLoadRecords "tfromp.template", "P=CstatH-LHe, X=101"
 dbLoadRecords "tfromp.template", "P=CstatH-LHe, X=102"
 dbLoadRecords "from_rasp_pi.db"
 dbLoadRecords "from_Labview.db"
+dbLoadRecords "PuddlePeeker.db", "P=Env-CstatV, DEV=WtrPuddle, LOW=2.0, PORT=PP_PORT"
+
 
