@@ -9,7 +9,7 @@ get_analog {
 
 set_bit {
    out "DO\$1 %u";
-#   in  "DO\$1 %u";
+   in  "DO\$1 %u";
    ExtraInput = Ignore;
 }
 
