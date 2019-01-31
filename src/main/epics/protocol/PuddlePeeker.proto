@@ -1,5 +1,6 @@
 # PuddlePeeker.proto
 Terminator = CR LF;
+ReadTimeout = 200;
 
 get_analog {
    out "A\$1?";
@@ -9,7 +10,7 @@ get_analog {
 
 set_bit {
    out "DO\$1 %u";
-   in  "DO\$1 %u";
+#   in  "DO\$1 %u";
    ExtraInput = Ignore;
 }
 

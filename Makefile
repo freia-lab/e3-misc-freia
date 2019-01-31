@@ -18,5 +18,6 @@ SOURCES += $(wildcard src/main/epics/misc-freiaApp/src/*.st)
 STARTUPS = $(wildcard src/main/ioc/*.cmd)
 
 MISCS += src/main/ioc/ioc-misc-freia.req
+MISCS += src/main/epics/protocol/PuddlePeeker.proto
 
 OPIS = opi
