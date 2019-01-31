@@ -7,6 +7,7 @@ include ${EPICS_ENV_PATH}/module.Makefile
 PROJECT = ioc_misc_freia
 
 #USR_DEPENDENCIES += seq
+USR_DEPENDENCIES += asyn,4.31+
 USR_DEPENDENCIES += autosave,5.7+
 USR_DEPENDENCIES += modbus,2.9+
 
