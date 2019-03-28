@@ -1,6 +1,6 @@
 # GasTubeContainer.db
 
-record(ai, "$(P):$(DEV):sRdv") {
+record(ai, "$(P):$(DEV):sRdV") {
    field(DESC, "Temperature in container")
    field(SCAN, "1 second")
    field(HIGH, "$(HIGH)")
