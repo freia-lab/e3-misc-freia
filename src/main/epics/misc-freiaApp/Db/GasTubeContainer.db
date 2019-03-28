@@ -1,0 +1,13 @@
+# GasTubeContainer.db
+
+record(ai, "$(P):$(DEV):sRdv") {
+   field(DESC, "Temperature in container")
+   field(SCAN, "1 second")
+   field(HIGH, "$(HIGH)")
+   field(HSV, "MINOR")
+   field(PREC, "1")
+   field(ADEL, "0.1")
+   field(EGU, "ᵒC")
+   field(DTYP, "stream")
+   field(INP, "@PuddlePeeker.proto get_analog_t $(PORT)")
+}

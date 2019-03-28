@@ -7,6 +7,7 @@
 #drvAsynIPPortConfigure(portName, hostInfo, priority, noAutoConnect, noProcessEos)
 
 drvAsynIPPortConfigure("PP_PORT","$(IP_ADDR2)",0,0,0)
+drvAsynIPPortConfigure("ARD03_PORT","$(IP_ADDR3)",0,0,0)
 drvAsynIPPortConfigure("DMT340_1","$(IP_ADDR):502",0,0,1)
 
 #modbusInterposeConfig(portName, 

@@ -8,6 +8,12 @@ get_analog {
    ExtraInput = Ignore;
 }
 
+get_analog_t {
+   out "T?";
+   in  "T %f";
+   ExtraInput = Ignore;
+}
+
 set_bit {
    out "DO\$1 %u";
 #   in  "DO\$1 %u";

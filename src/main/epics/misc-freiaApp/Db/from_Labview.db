@@ -40,7 +40,7 @@ record(ao, "HPRF-Cav2:ReflPwr:sRdV") {
 }
 record(ao, "HPRF-Cav1:InPwr:sRdV") {
    field (DESC, "Input Power from LabView")
-   field (EGU, "kW")
+   field (EGU, "dBm")
    field (DTYP, "Soft Channel")
    field (PREC, "1")
    field (LOPR, "0")
@@ -48,7 +48,7 @@ record(ao, "HPRF-Cav1:InPwr:sRdV") {
 }
 record(ao, "HPRF-Cav2:InPwr:sRdV") {
    field (DESC, "Input Power from LabView")
-   field (EGU, "kW")
+   field (EGU, "dBm")
    field (DTYP, "Soft Channel")
    field (PREC, "1")
    field (LOPR, "0")
