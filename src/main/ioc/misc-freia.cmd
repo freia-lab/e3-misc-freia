@@ -24,4 +24,10 @@ requireSnippet(ioc-misc-freia-postSaveRestore.cmd)
 requireSnippet(seqToLoad-misc-freia.cmd)
 #requireSnippet(userPostDriverConf-misc-freia.cmd"
 
+# Initialize the "good" Sonar:Dist (let's hope it's good when we restart
+# the IOC. Otherwise this command must be repeated when Sonar:Dist has
+# valid data.
+sleep 5
+dbpf Cryo-Rec:LP:GasBagSonar-good.PROC 1
+
 

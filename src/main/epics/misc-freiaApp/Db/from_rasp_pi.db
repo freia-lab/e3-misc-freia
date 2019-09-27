@@ -1,4 +1,5 @@
-# Sonar system 
+# Sonar system (192.168.10.188) cranberrypi
+#
 record(ai, "Env-CmpRoom:TT001:sRdV") {
    field (DESC, "Temperature")
    field (EGU, "ᵒC")
@@ -10,8 +11,8 @@ record(ai, "Env-CmpRoom:TT001:sRdV") {
    field (SCAN, "10 second")
 }
 
-record(ai, "Cryo-Rec:LP:GasBagSonar") {
-   field (DESC, "Distance sensor- balloon")
+record(ai, "Cryo-Rec:LP:GasBagSonar-raw") {
+   field (DESC, "Distance sensor- balloon (raw value)")
    field (EGU, "cm")
    field (DTYP, "Soft Channel")
    field (LOPR, "0")
@@ -21,9 +22,45 @@ record(ai, "Cryo-Rec:LP:GasBagSonar") {
    field (SCAN, "10 second")
 }
 
+record(ai, "Cryo-Rec:LP:GasBagSonar") {
+   field (DESC, "Distance sensor- balloon")
+   field (EGU, "cm")
+   field (DTYP, "Soft Channel")
+   field (LOPR, "0")
+   field (HOPR, "200.0")
+   field (PREC, "0")
+   field (INP, "Cryo-Rec:LP:GasBagSonar-good")
+ }
+
+# This record must be processed in the start-up script or
+# manually by the operator to initialize it to a good value from Sonar:Dist
+#
+record (ao, "Cryo-Rec:LP:GasBagSonar-good") {
+  field (DTYP, "Soft Channel")
+#  field (PINI, "YES")
+  field (DOL, "Sonar:Dist")
+  field (OMSL, "closed_loop")
+  field (FLNK, "Cryo-Rec:LP:GasBagSonar")
+}
+# Help record to filter unexpected data (differing by more than value in INPD)
+# from the last "good" value
+record(calcout, "Cryo-Rec:LP:GasBagSonar-calc") {
+  field (SCAN, "10 second")
+  field (DESC,"Record for validating Sonar:Dist")
+  field (INPA, "Sonar:Dist")
+  field (INPB, "Cryo-Rec:LP:GasBagSonar-good")
+  field (INPD, "15")
+  field (CALC, "((ABS(A-B))>D)?1:0")
+  field (OOPT, "When Zero")
+  field (OCAL, "A")
+  field (DOPT, "Use OCAL")
+  field (OUT, "Cryo-Rec:LP:GasBagSonar-good PP")
+#  field (PINI, "YES")
+}
+
 record(ai, "Cryo-Rec:LP:GasBagVol") {
    field (DESC, "Volume balloon")
-   field (EGU, "m3")
+   field (EGU, "m³")
    field (DTYP, "Soft Channel")
    field (LOPR, "0")
    field (HOPR, "120.0")
@@ -34,7 +71,7 @@ record(ai, "Cryo-Rec:LP:GasBagVol") {
 
 record(ai, "Cryo:HeVol:Total") {
    field (DESC, "Helium's total volume")
-   field (EGU, "m3")
+   field (EGU, "m³")
    field (DTYP, "Soft Channel")
    field (LOPR, "0")
    field (HOPR, "3000.0")
@@ -43,9 +80,11 @@ record(ai, "Cryo:HeVol:Total") {
    field (SCAN, "10 second")
 }
 
+# raspi 192.168.10.187 (close to Linde control cabinet)
+#
 record(ai, "Cryo:HeVol:Total-Expected") {
    field (DESC, "Helium's expected volume")
-   field (EGU, "m3")
+   field (EGU, "m³")
    field (DTYP, "Soft Channel")
    field (LOPR, "0")
    field (HOPR, "3000.0")
@@ -54,8 +93,8 @@ record(ai, "Cryo:HeVol:Total-Expected") {
    field (SCAN, "10 second")
 }
 
-# Weather station
-
+# Weather station freiapi 04 192.168.10.171 (shelf in front of the control room)
+#
 record(ai, "Env-FREIA:PT001:sRdV") {
    field (DESC, "Atmospheric pressure")
    field (EGU, "mbar")
@@ -89,17 +128,6 @@ record(ai, "Env-FREIA:TT002:sRdV") {
    field (SCAN, "10 second")
 }
 
-record(ai, "Env-FREIA:TT003:sRdV") {
-   field (DESC, "Ambient temperature")
-   field (EGU, "ᵒC")
-   field (DTYP, "Soft Channel")
-   field (LOPR, "10")
-   field (HOPR, "30.0")
-   field (PREC, "1")
-   field (INP, "HeliumVolume:T")
-   field (SCAN, "10 second")
-}
-
 record(ai, "Env-FREIA:HT002:sRdV") {
    field (DESC, "Ambient relative humidity")
    field (EGU, "%")
@@ -111,9 +139,22 @@ record(ai, "Env-FREIA:HT002:sRdV") {
    field (SCAN, "10 second")
 }
 
+# raspi 192.168.10.187 (close to Linde control cabinet)
+#
+record(ai, "Env-FREIA:TT003:sRdV") {
+   field (DESC, "Ambient temperature")
+   field (EGU, "ᵒC")
+   field (DTYP, "Soft Channel")
+   field (LOPR, "10")
+   field (HOPR, "30.0")
+   field (PREC, "1")
+   field (INP, "HeliumVolume:T")
+   field (SCAN, "10 second")
+}
+
 record(ai, "Cryo:HeVol:In") {
    field (DESC, "Volume of return gas")
-   field (EGU, "m3")
+   field (EGU, "m³")
    field (DTYP, "Soft Channel")
    field (LOPR, "0")
    field (HOPR, "100.0")
@@ -124,7 +165,7 @@ record(ai, "Cryo:HeVol:In") {
 
 record(ai, "Cryo:HeVol:Out") {
    field (DESC, "Volume of delivered gas")
-   field (EGU, "m3")
+   field (EGU, "m³")
    field (DTYP, "Soft Channel")
    field (LOPR, "0")
    field (HOPR, "1000.0")
@@ -134,8 +175,8 @@ record(ai, "Cryo:HeVol:Out") {
 }
 
 record(ai, "Cryo:HeVol:Dwr") {
-   field (DESC, "Volume of LHe in dewar")
-   field (EGU, "l")
+   field (DESC, "Volume of He in dewar")
+   field (EGU, "m³")
    field (DTYP, "Soft Channel")
    field (LOPR, "0")
    field (HOPR, "2000.0")
@@ -146,7 +187,7 @@ record(ai, "Cryo:HeVol:Dwr") {
 
 record(ai, "Cryo:HeVol:HP") {
    field (DESC, "Helium Volume in high pressure tank")
-   field (EGU, "m3")
+   field (EGU, "m³")
    field (DTYP, "Soft Channel")
    field (LOPR, "0")
    field (HOPR, "200.0")
@@ -156,8 +197,8 @@ record(ai, "Cryo:HeVol:HP") {
 }
 
 record(ai, "Cryo:HeVol:BuffTank") {
-   field (DESC, "Helium Volume in buffer")
-   field (EGU, "m3")
+   field (DESC, "Helium Volume in buffer tank")
+   field (EGU, "m³")
    field (DTYP, "Soft Channel")
    field (LOPR, "0")
    field (HOPR, "100.0")
@@ -168,7 +209,7 @@ record(ai, "Cryo:HeVol:BuffTank") {
 
 record(ai, "Cryo:HeVol:4K") {
    field (DESC, "Helium Volume in 4K system")
-   field (EGU, "m3")
+   field (EGU, "m³")
    field (DTYP, "Soft Channel")
    field (LOPR, "0")
    field (HOPR, "100.0")
@@ -179,7 +220,7 @@ record(ai, "Cryo:HeVol:4K") {
 
 record(ai, "Cryo:HeVol:2K") {
    field (DESC, "Helium Volume in 2K system")
-   field (EGU, "m3")
+   field (EGU, "m³")
    field (DTYP, "Soft Channel")
    field (LOPR, "0")
    field (HOPR, "100.0")
@@ -190,7 +231,7 @@ record(ai, "Cryo:HeVol:2K") {
 
 record(ai, "Cryo:HeVol:CM") {
    field (DESC, "He in the cryomodule")
-   field (EGU, "m3")
+   field (EGU, "m³")
    field (DTYP, "Soft Channel")
    field (LOPR, "0")
    field (HOPR, "100.0")
