@@ -1,0 +1,14 @@
+# PuddlePeeker.proto
+Terminator = CR LF;
+ReadTimeout = 200;
+
+get_temperature {
+   out "T?";
+   in "T %f";
+   ExtraInput=Ignore;
+}
+get_distance {
+   out "D?";
+   in "D %f";
+   ExtraInput=Ignore;
+}

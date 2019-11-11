@@ -1,4 +1,4 @@
-# PuddlePeeker.db
+# PuddlePeeker
 
 record(ai, "$(P):$(DEV):AI0") {
    field(DESC, "Water level 1")

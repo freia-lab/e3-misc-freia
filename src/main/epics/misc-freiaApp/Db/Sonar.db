@@ -1,0 +1,23 @@
+# Sonar device
+
+record(ai, "Cryo-Rec:LP:GasBagSonar-new") {
+   field (DESC, "Distance sensor: to gas bag")
+   field (EGU, "cm")
+   field (DTYP, "stream")
+   field (LOPR, "0")
+   field (HOPR, "200.0")
+   field (PREC, "0")
+   field (INP, "@Sonar.proto get_distance $(PORT2)")
+   field (SCAN, "10 second")
+}
+record(ai, "Env-CmpRoom:TT002:sRdV") {
+   field (DESC, "Temperature above the baloon")
+   field (EGU, "ᵒC")
+   field (DTYP, "stream")
+   field (LOPR, "10.0")
+   field (HOPR, "30.0")
+   field (PREC, "2")
+   field (INP, "@Sonar.proto get_temperature $(PORT2)")
+   field (SCAN, "10 second")
+}
+
