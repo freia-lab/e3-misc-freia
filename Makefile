@@ -20,6 +20,6 @@ STARTUPS = $(wildcard src/main/ioc/*.cmd)
 
 MISCS += src/main/ioc/ioc-misc-freia.req
 MISCS += src/main/epics/protocol/PuddlePeeker.proto
-MISCS += src/main/epics/protocol/Sonar.proto
+MISCS += src/main/epics/protocol/Lidar.proto
 
 OPIS = opi
