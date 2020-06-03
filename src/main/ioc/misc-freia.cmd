@@ -7,7 +7,7 @@ updateMenuConvert()
 addScan(60)
 addScan(300)
 
-requireSnippet(userPreDriverConf-misc-freia.cmd, "IP_ADDR=192.168.1.103,IP_ADDR2=192.168.1.59:1137,IP_ADDR3=192.168.1.58:1137,IP_ADDR4=192.168.1.55:1137")
+requireSnippet(userPreDriverConf-misc-freia.cmd, "IP_ADDR=192.168.1.103,IP_ADDR2=192.168.1.59:1137,IP_ADDR3=192.168.1.58:1137,IP_ADDR4=192.168.10.188:1137")
 #requireSnippet(userPreDriverConf-misc-freia.cmd, "IP_ADDR=192.168.1.103,IP_ADDR2=192.168.10.62:3333")
 requireSnippet(dbToLoad-misc-freia.cmd)
 requireSnippet(ioc-misc-freia-preSaveRestore.cmd)

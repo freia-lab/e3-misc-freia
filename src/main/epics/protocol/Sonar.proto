@@ -1,5 +1,5 @@
 # PuddlePeeker.proto
-Terminator = CR LF;
+Terminator = LF;
 ReadTimeout = 200;
 
 get_temperature {
