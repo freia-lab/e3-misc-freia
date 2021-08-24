@@ -9,6 +9,6 @@ get_temperature {
 }
 get_distance {
    out "D?";
-   in "D %f";
+   in "D %f %(\$1)f";
    ExtraInput=Ignore;
 }
