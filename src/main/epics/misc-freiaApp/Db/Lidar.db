@@ -47,6 +47,15 @@ record(calc, "Cryo-Rec:LP:GasBagLidar-rate") {
   field (EGU, "cm/min")
 }
 
+record(calc, "Cryo-Rec:LP:GasBagLidar-perc") {
+  field (SCAN, "5 second")
+  field (DESC,"Gas Bag filling")
+  field (INPA, "Cryo-Rec:LP:GasBagLidar-smooth")
+  field (CALC, "(425-A)/2.35")
+  info (autosaveFields, "CALC")
+  field (EGU, "%")
+}
+
 #record(ai, "Env-CmpRoom:TT002:sRdV") {
 #   field (DESC, "Temperature above the baloon")
 #   field (EGU, "ᵒC")
