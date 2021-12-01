@@ -10,6 +10,9 @@ addScan(300)
 requireSnippet(userPreDriverConf-misc-freia.cmd, "IP_ADDR=192.168.1.103,IP_ADDR2=192.168.1.59:1137,IP_ADDR3=192.168.1.58:1137,IP_ADDR4=192.168.10.188:1137")
 #requireSnippet(userPreDriverConf-misc-freia.cmd, "IP_ADDR=192.168.1.103,IP_ADDR2=192.168.10.62:3333")
 requireSnippet(dbToLoad-misc-freia.cmd)
+
+dbLoadRecords("asynRecord.db","P='Env-Ctrl',R=:asynRec,PORT='LIDAR_PORT',ADDR='0',IMAX='1024',OMAX='256'")
+
 requireSnippet(ioc-misc-freia-preSaveRestore.cmd)
 
 
@@ -32,5 +35,9 @@ requireSnippet(seqToLoad-misc-freia.cmd)
 # valid data.
 sleep 5
 dbpf Cryo-Rec:LP:GasBagSonar-good.PROC 1
+
+dbpf Cryo-Rec:LP:GasBagLidar:HIHI 500.0
+dbpf Cryo-Rec:LP:GasBagLidar:HHSV MAJOR
+
 
 

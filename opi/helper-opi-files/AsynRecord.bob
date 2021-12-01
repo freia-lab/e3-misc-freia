@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<display version="2.0.0">
+  <name>Display</name>
+  <height>700</height>
+  <widget type="embedded" version="2.0.0">
+    <name>Embedded Display</name>
+    <macros>
+      <P>Env-Ctrl</P>
+      <R>:asynRec</R>
+    </macros>
+    <file>../../freia-symbols/display-builder/asyn/asynRecord.bob</file>
+    <x>20</x>
+    <y>60</y>
+    <width>450</width>
+    <height>620</height>
+  </widget>
+  <widget type="combo" version="2.0.0">
+    <name>Combo Box</name>
+    <pv_name>Env-Ctrl:asynRec.PORT</pv_name>
+    <x>170</x>
+    <y>20</y>
+    <width>150</width>
+    <items>
+      <item>LIDAR_PORT</item>
+      <item>DMT340_1</item>
+      <item>PP_PORT</item>
+      <item>ARD03_PORT</item>
+    </items>
+    <items_from_pv>false</items_from_pv>
+  </widget>
+  <widget type="label" version="2.0.0">
+    <name>Label</name>
+    <text>Asyn Port Name</text>
+    <x>40</x>
+    <y>20</y>
+    <width>120</width>
+    <height>30</height>
+  </widget>
+</display>
