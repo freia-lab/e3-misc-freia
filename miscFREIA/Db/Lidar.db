@@ -1,0 +1,126 @@
+# Lidar device
+
+record(ai, "Cryo-Rec:LP:GasBagLidar-raw") {
+   field (DESC, "Distance sensor: to gas bag")
+   field (EGU, "cm")
+   field (DTYP, "stream")
+   field (LOPR, "0")
+   field (HOPR, "300.0")
+   field (PREC, "0")
+   field (INP, "@Lidar.proto get_distance(Cryo-Rec:LP:GasBagLidar-strength) $(PORT2)")
+   field (SCAN, "5 second")
+}
+record(ai, "Cryo-Rec:LP:GasBagLidar-strength") {
+   field (DESC, "Distance sensor: signal strength")
+#   field (EGU, "cm")
+   field (LOPR, "0")
+   field (HOPR, "600.0")
+   field (PREC, "1")
+   field (LOW, "150.0")
+   field (LOLO, "50.0")
+   field (LSV, "MINOR")
+   field (LLSV, "MAJOR")
+}
+
+# This record is set-up to copy Cryo-Rec:LP:GasBagLidar-raw to Cryo-Rec:LP:GasBagLidar
+# only when it's within the reasonable limits (0, 450 cm).
+#
+record(calcout, "Cryo-Rec:LP:GasBagLidar-filtered") {
+  field (INPA, "Cryo-Rec:LP:GasBagLidar-raw")
+  field (INPB, "0")
+  field (INPC, "450")
+  field (SCAN, "5 second")
+  field (OCAL, "A")
+  field (DOPT, "Use OCAL")
+  field (CALC, "(A>=B)&&(A<C)")
+  field (OOPT, "When Non-zero")
+  field (OUT, "Cryo-Rec:LP:GasBagLidar PP")
+  info (autosaveFields,"INPA INPB")
+}
+
+# This record is processed only if the data from Cryo-Rec:LP:GasBagLidar-raw is
+# within acceptable limits. The forward link points to the help record which
+# will write 1 to Cryo-Rec:LP:GasBagLidar-status. This is a bo record that
+# will keep the VAL=1 for a time specified in HIGH field. When 
+# Cryo-Rec:LP:GasBagLidar is not processed for mote then HIGH seconds 
+# Cryo-Rec:LP:GasBagLidar-status will be set to 0 indicating error.
+#
+record(ai, "Cryo-Rec:LP:GasBagLidar") {
+   field (DESC, "Distance sensor: to gas bag")
+   field (EGU, "cm")
+   field (LOPR, "0")
+   field (HOPR, "300.0")
+   field (PREC, "0")
+   field (LOW, "150.0")
+   field (LOLO, "100.0")
+   field (LSV, "MINOR")
+   field (LLSV, "MAJOR")
+   field (HSV, "MINOR")
+   field (HYST, "5.0")
+   field (FLNK, "Cryo-Rec:LP:GasBagLidar-HB")
+   info (autosaveFields,"LOW LOLO HIGH")
+}
+
+# Help record so write 1 to Cryo-Rec:LP:GasBagLidar-status and force processing
+# of Cryo-Rec:LP:GasBagLidar-smooth
+#
+record(calcout, "Cryo-Rec:LP:GasBagLidar-HB") {
+  field (INPA, "1")
+  field (CALC,  "A")
+  field (FLNK, "Cryo-Rec:LP:GasBagLidar-smooth")
+  field (OUT, "Cryo-Rec:LP:GasBagLidar-status PP")
+}
+
+# This record is processed when Cryo-Rec:LP:GasBagLidar-raw is within limits.
+# If this doesn't happen for more than 60 s the value will be 0 indicating
+# en error conditions (Cryo-Rec:LP:GasBagLidar will keep the last corrct value).
+#
+record (bo, "Cryo-Rec:LP:GasBagLidar-status") {
+  field(HIGH, "60.0")
+  field(VAL,1)
+  field(PINI, YES)
+  field(ONAM, "OK")
+  field(ZNAM, "ERROR")
+  field(ZSV, MINOR)
+}
+
+record(ai, "Cryo-Rec:LP:GasBagLidar-smooth") {
+   field (DESC, "Distance sensor- balloon")
+   field (EGU, "cm")
+   field (DTYP, "Raw Soft Channel")
+   field (LOPR, "0")
+   field (HOPR, "300.0")
+   field (SMOO, "0.95")
+   field (PREC, "1")
+   field (INP, "Cryo-Rec:LP:GasBagLidar")
+ }
+
+record(calc, "Cryo-Rec:LP:GasBagLidar-rate") {
+  field (SCAN, "60 second")
+  field (DESC,"Rate of gas bag height change")
+  field (INPA, "Cryo-Rec:LP:GasBagLidar-smooth")
+  field (INPB, "Cryo-Rec:LP:GasBagLidar-rate.LA")
+  field (CALC, "B-A")
+  field (EGU, "cm/min")
+}
+
+record(calc, "Cryo-Rec:LP:GasBagLidar-perc") {
+  field (SCAN, "5 second")
+  field (DESC,"Gas Bag filling")
+  field (INPA, "Cryo-Rec:LP:GasBagLidar-smooth")
+  field (CALC, "(425-A)/2.35")
+  info (autosaveFields, "CALC")
+  field (EGU, "%")
+}
+
+#record(ai, "Env-CmpRoom:TT002:sRdV") {
+#   field (DESC, "Temperature above the baloon")
+#   field (EGU, "ᵒC")
+#   field (DTYP, "stream")
+#   field (LOPR, "10.0")
+#   field (HOPR, "30.0")
+#   field (PREC, "2")
+#   field (INP, "@Lidar.proto get_temperature $(PORT2)")
+#   field (SCAN, "5 second")
+#}
+

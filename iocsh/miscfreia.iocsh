@@ -1,0 +1,74 @@
+# This should be the included snippet to configure and run the deployed IOC. It should be loaded with
+#
+#   iocshLoad("$(miscfreia_DIR)/miscfreia.iocsh", "TOP=/opt/epics/autosave,IP_ADDR=192.168.1.103,IP_ADDR2=192.168.1.59:1137,IP_ADDR3=192.168.1.58:1137,IP_ADDR4=192.168.10.188:1137")
+
+#- ###                miscfreia   iocsh             ###
+#- ####################################################
+#- >> Mandatory
+#- IOCNAME -	  - IOC name
+#- TOP	   	  - top directory for autosave
+#- IP_ADDR	  - ip address of DMT modbus device (dew point measurement unit)
+#- IP_ADDR2	  - ip and port address of raspi for water detector in the Gersemi hole
+#- IP_ADDR3	  - ip and port address of raspi for temperature measuement in the gas tube container
+#- IP_ADDR4	  - ip and port address of raspi for gas bag lidar
+#-
+#- >> Optional
+#- DMT_PREFIX	  - prefix for the dew point measurement device, default Cryo-CBox:Pur:QT3400
+#-
+
+epicsEnvSet("IOCDIR", "miscfreia")
+epicsEnvSet("STREAM_PROTOCOL_PATH","$(miscfreia_DB)")
+
+epicsEnvSet("DMT_PREFIX" "$(DMTPREFIX=Cryo-CBox:Pur:QT3400)")
+
+updateMenuConvert()
+
+addScan(60)
+addScan(300)
+################################################
+# Documentation: http://cars9.uchicago.edu/software/epics/modbusDoc.html
+
+drvAsynIPPortConfigure("PP_PORT","$(IP_ADDR2)",0,0,0)
+drvAsynIPPortConfigure("ARD03_PORT","$(IP_ADDR3)",0,0,0)
+drvAsynIPPortConfigure("DMT340_1","$(IP_ADDR):502",0,0,1)
+drvAsynIPPortConfigure("LIDAR_PORT","$(IP_ADDR4)",0,0,0)
+
+modbusInterposeConfig("DMT340_1",0,1000,0)
+
+drvModbusAsynConfigure(DMT_DATA_F, "DMT340_1", 0, 3, 0, 66, 7, 2000, "dmt340")
+drvModbusAsynConfigure(DMT_STATUS, "DMT340_1", 0, 3, 512, 5, 4, 2000, "dmt340")
+asynSetTraceMask "DMT340_1",0,1     # Enable traceError
+#################################################
+
+#################################################
+#requireSnippet(dbToLoad-misc-freia.cmd)
+
+dbLoadRecords "longin.template", "P=$(DMT_PREFIX)_, R=sOk, PORT=DMT_STATUS, OFFSET=0, DATA_TYPE=UINT16, PREC=0, SCAN=I/O Intr, LOPR=0, HOPR=1"
+dbLoadRecords "longin.template", "P=$(DMT_PREFIX)_, R=sOn, PORT=DMT_STATUS, OFFSET=1, DATA_TYPE=UINT16, PREC=0, SCAN=I/O Intr, LOPR=0, HOPR=1"
+dbLoadRecords "longin.template", "P=$(DMT_PREFIX)_, R=sErrCode1, PORT=DMT_STATUS, OFFSET=3, DATA_TYPE=UINT16, PREC=0, SCAN=I/O Intr, LOPR=0, HOPR=0xffff"
+dbLoadRecords "longin.template", "P=$(DMT_PREFIX)_, R=sErrCode2, PORT=DMT_STATUS, OFFSET=4, DATA_TYPE=UINT16, PREC=0, SCAN=I/O Intr, LOPR=0, HOPR=0xffff"
+dbLoadRecords "dmt340_meas.template", "P=$(DMT_PREFIX), PORT=DMT_DATA_F, SCAN=I/O Intr"
+dbLoadRecords "tfromp.template", "P=CstatH-LHe, X=101"
+dbLoadRecords "tfromp.template", "P=CstatH-LHe, X=102"
+dbLoadRecords "from_rasp_pi.db"
+dbLoadRecords "from_Labview.db"
+dbLoadRecords "PuddlePeeker.db", "P=Env-CstatV, DEV=WtrPuddle, LOW=2.0, PORT=PP_PORT"
+dbLoadRecords "GasTubeContainer.db", "P=Env-Container, DEV=TT001, HIGH=32.0, PORT=ARD03_PORT"
+dbLoadRecords "Lidar.db", "PORT2=LIDAR_PORT"
+dbLoadRecords("asynRecord.db","P='$(IOCNAME)',R=:asynRec,PORT='LIDAR_PORT',ADDR='0',IMAX='1024',OMAX='256'")
+#################################################
+
+iocshLoad("$(autosave_DIR)/autosave.iocsh", "AS_TOP=$(TOP),IOCNAME=$(IOCNAME)")
+
+#################################################
+#requireSnippet(seqToLoad-misc-freia.cmd)
+afterInit("seq TP_startstop", "p1 = PT001, p2 = PT014, p3 = PT010, p4 = TP001, p5 = TT401B, p6 = FV000, p7 = IBox, ICB=1")
+afterInit("seq TP_startstop", "p1 = PT004, p2 = PT011, p3 = PT015, p4 = TP002, p5 = TT214A, p6 = FV001, p7 = HNOSS")
+#################################################
+
+# Initialize the "good" Sonar:Dist (let's hope it's good when we restart
+# the IOC). Otherwise this command must be repeated when Sonar:Dist has
+# valid data.
+
+afterInit("epicsThreadSleep", "5")
+afterInit("dbpf", "Cryo-Rec:LP:GasBagSonar-good.PROC", "1")

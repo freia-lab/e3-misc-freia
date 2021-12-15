@@ -1,0 +1,22 @@
+# LHe temperarure calculated from pressure
+# When the LHe level is < 10% then the temp will show 6.00K
+# and there will be SOFT error for $(P):PT$(X):sCalcT (value outside the table)
+record(calc, "$(P):PT$(X):sRdV_Pa") {
+   field (INPA, "$(P):PT$(X):sRdV")
+   field (INPB, "$(P):LT101:sRdV")
+   field (INPC, "10")
+   field (CALC, "B>C?A*100.0:399000")
+   field (SCAN, "1 second")
+   field (FLNK, "$(P):PT$(X):sCalcT")
+}
+
+record(ai, "$(P):PT$(X):sCalcT") {
+   field (DTYP,"Raw Soft Channel")
+   field (DESC,"LHe temp. calculated from pressure")
+   field (EGU, "K")
+   field (LOPR, "1.25")
+   field (HOPR, "5.0")
+   field (SCAN, "Passive")
+   field (INP,"$(P):PT$(X):sRdV_Pa")
+   field (LINR, "PressTemp")
+}
