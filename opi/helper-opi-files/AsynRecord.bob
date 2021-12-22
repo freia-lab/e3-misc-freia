@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <display version="2.0.0">
   <name>Display</name>
+  <macros>
+    <P>ioc08-misc</P>
+  </macros>
   <height>700</height>
   <widget type="embedded" version="2.0.0">
     <name>Embedded Display</name>
     <macros>
-      <P>Env-Ctrl</P>
       <R>:asynRec</R>
     </macros>
     <file>../../freia-symbols/display-builder/asyn/asynRecord.bob</file>
@@ -16,7 +18,7 @@
   </widget>
   <widget type="combo" version="2.0.0">
     <name>Combo Box</name>
-    <pv_name>Env-Ctrl:asynRec.PORT</pv_name>
+    <pv_name>$(P):asynRec.PORT</pv_name>
     <x>170</x>
     <y>20</y>
     <width>150</width>
