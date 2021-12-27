@@ -56,6 +56,9 @@ dbLoadRecords "PuddlePeeker.db", "P=Env-CstatV, DEV=WtrPuddle, LOW=2.0, PORT=PP_
 dbLoadRecords "GasTubeContainer.db", "P=Env-Container, DEV=TT001, HIGH=32.0, PORT=ARD03_PORT"
 dbLoadRecords "Lidar.db", "PORT2=LIDAR_PORT"
 dbLoadRecords("asynRecord.db","P='$(IOCNAME)',R=:asynRec,PORT='LIDAR_PORT',ADDR='0',IMAX='1024',OMAX='256'")
+# FREIA PVs set by the alarm server
+dbLoadRecords("freia-sevrpv.db")
+
 #################################################
 
 iocshLoad("$(autosave_DIR)/autosave.iocsh", "AS_TOP=$(TOP),IOCNAME=$(IOCNAME)")
