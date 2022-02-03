@@ -59,6 +59,11 @@ dbLoadRecords("asynRecord.db","P='$(IOCNAME)',R=:asynRec,PORT='LIDAR_PORT',ADDR=
 # FREIA PVs set by the alarm server
 dbLoadRecords("freia-sevrpv.db")
 
+# PVs for the sequencer program
+dbLoadRecords("isol_vac_intrl.db", "P=CstatH-Vac,B=HNOSS,ACT1=StartPmp,ACT2=StopPmp,P_IN=PT004,P_OUT1=PT015,T_IN=LN2:TT214A,FV=FV001,TP=TP002")
+dbLoadRecords("isol_vac_intrl.db", "P=CstatH-Vac,B=IBox,ACT1=StartPmp,ACT2=StopPmp,P_IN=PT001,P_OUT1=PT014,T_IN=IBoxN2:TT401B,FV=FV000,TP=TP001")
+dbLoadRecords("vac_intrl_TPs.db", "P=CstatH-Vac,ACT1=StartPmp")
+
 #################################################
 
 iocshLoad("$(autosave_DIR)/autosave.iocsh", "AS_TOP=$(TOP),IOCNAME=$(IOCNAME)")

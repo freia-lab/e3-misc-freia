@@ -32,8 +32,8 @@ double PTMARGI = 3.e-4 ;   /*(mbar) Hysteresis for PT_LIMIT3*/
 int count = 0;
 
 assign PTin to "CstatH-Vac:{p1}:sRdV";    
-assign PTout1 to "CstatH-Vac:{p2}:sRdV";  //TPG300-1 A2, Pi
-assign PTout2 to "CstatH-Vac:{p3}:sRdV";  //TPG300-2 A2, Pi
+assign PTout1 to "CstatH-Vac:{p2}:PrsR";  //TPG300-1 A2, Pi
+assign PTout2 to "CstatH-Vac:{p3}:PrsR";  //TPG300-2 A2, Pi
 assign TPStatus to "CstatH-Vac:{p4}:sStatus";  //Turbo pump status
 assign TP_on to "CstatH-Vac:{p4}:cOn"; //Pump on / off 1 / 0
 assign FVon to "CstatH-Vac:{p6}:sOn";
