@@ -59,6 +59,21 @@ dbLoadRecords("asynRecord.db","P='$(IOCNAME)',R=:asynRec,PORT='LIDAR_PORT',ADDR=
 # FREIA PVs set by the alarm server
 dbLoadRecords("freia-sevrpv.db")
 
+# Help PV for cRIO PVs (to avoid archiving array data when the value doesn't change)
+#
+dbLoadRecords '$(miscfreia_DB)crio.db', 'P=IntlkF-cRio1:,D=DIN-1:,S=sStatus-1,SCAN=".1 second"'
+dbLoadRecords '$(miscfreia_DB)crio.db', 'P=IntlkF-cRio1:,D=DIN-1:,S=sStatus-2,SCAN=".1 second"'
+dbLoadRecords '$(miscfreia_DB)crio.db', 'P=IntlkF-cRio1:,D=DIN-1:,S=sStatus-3,SCAN=".1 second"'
+dbLoadRecords '$(miscfreia_DB)crio.db', 'P=IntlkF-cRio1:,D=DIN-1:,S=sStatus-4,SCAN=".1 second"'
+dbLoadRecords '$(miscfreia_DB)crio.db', 'P=IntlkF-cRio1:,D=DIN-2:,S=sStatus-1,SCAN=".1 second"'
+dbLoadRecords '$(miscfreia_DB)crio.db', 'P=IntlkF-cRio1:,D=DIN-2:,S=sStatus-2,SCAN=".1 second"'
+dbLoadRecords '$(miscfreia_DB)crio.db', 'P=IntlkF-cRio1:,D=DIN-2:,S=sStatus-3,SCAN=".1 second"'
+dbLoadRecords '$(miscfreia_DB)crio.db', 'P=IntlkF-cRio1:,D=DIN-2:,S=sStatus-4,SCAN=".1 second"'
+dbLoadRecords '$(miscfreia_DB)crio.db', 'P=IntlkF-cRio1:,D=DIN-3:,S=sStatus-1,SCAN=".1 second"'
+dbLoadRecords '$(miscfreia_DB)crio.db', 'P=IntlkF-cRio1:,D=DIN-3:,S=sStatus-2,SCAN=".1 second"'
+dbLoadRecords '$(miscfreia_DB)crio.db', 'P=IntlkF-cRio1:,D=DIN-3:,S=sStatus-3,SCAN=".1 second"'
+dbLoadRecords '$(miscfreia_DB)crio.db', 'P=IntlkF-cRio1:,D=DIN-3:,S=sStatus-4,SCAN=".1 second"'
+
 # PVs for the sequencer program
 dbLoadRecords("isol_vac_intrl.db", "P=CstatH-Vac,B=HNOSS,ACT1=StartPmp,ACT2=StopPmp,P_IN=PT004,P_OUT1=PT015,T_IN=LN2:TT214A,FV=FV001,TP=TP002")
 dbLoadRecords("isol_vac_intrl.db", "P=CstatH-Vac,B=IBox,ACT1=StartPmp,ACT2=StopPmp,P_IN=PT001,P_OUT1=PT014,T_IN=IBoxN2:TT401B,FV=FV000,TP=TP001")

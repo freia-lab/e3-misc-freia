@@ -1,0 +1,29 @@
+record(waveform, "$(P)$(D)$(S)-wf") {
+   field(DESC, "Copy of $(P)$(D)$(S)")
+   field(SCAN, "$(SCAN)")
+   field(FLNK, "$(P)$(D)$(S)-calc")
+   field(DTYP, "Soft Channel")
+   field(INP, "$(P)$(D)$(S)")
+   field(NELM, "8")
+   field(APST, "On Change")
+   field(MPST, "On Change")
+   field(FTVL, "SHORT")
+}
+
+record(calc, "$(P)$(D)$(S)-calc") {
+   field(INPA, "$(P)$(D)$(S)-wf.[0]")
+   field(INPB, "$(P)$(D)$(S)-wf.[1]")
+   field(INPC, "$(P)$(D)$(S)-wf.[2]")
+   field(INPD, "$(P)$(D)$(S)-wf.[3]")
+   field(INPE, "$(P)$(D)$(S)-wf.[4]")
+   field(INPF, "$(P)$(D)$(S)-wf.[5]")
+   field(INPG, "$(P)$(D)$(S)-wf.[6]")
+   field(INPH, "$(P)$(D)$(S)-wf.[7]")
+   field(CALC, "A+2*B+4*C+8*D+16*E+32*F+64*G+128*H")
+   field(FLNK, "$(P)$(D)$(S)-mbbi PP")
+}
+
+record(mbbiDirect, "$(P)$(D)$(S)-mbbi") {
+   field(NOBT, "8")
+   field(INP, "$(P)$(D)$(S)-calc")
+}
