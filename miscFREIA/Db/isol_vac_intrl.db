@@ -23,7 +23,7 @@ record(calc, "CstatH:Ctrl-$(B):$(ACT1)-s$(FV)") {
    field (CALC, "((A+B+C)=0)<<4")
 }
 
-record(state,"$(P):Ctrl-$(B):$(ACT1)-sState") {
+record(stringin,"$(P):Ctrl-$(B):$(ACT1)-sState") {
    field (DESC, "State of the $(B):$(ACT1) sequence")
 }
 
@@ -46,7 +46,7 @@ record(calc, "$(P):Ctrl-$(B):$(ACT2)-sPerm") {
    field (SCAN, "1 second")
 }
 
-record(state,"$(P):Ctrl-$(B):$(ACT2)-sState") {
+record(stringin,"$(P):Ctrl-$(B):$(ACT2)-sState") {
    field (DESC, "State of the $(B):$(ACT2) sequence")
 }
 
