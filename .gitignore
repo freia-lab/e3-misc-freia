@@ -10,6 +10,7 @@
 core.*
 *-loc/*.Makefile
 miscFREIA/*.Makefile
+miscFREIA/O.*
 cellMods/
 testMods*/
 *PVs.list
