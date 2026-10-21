@@ -32,6 +32,7 @@ drvAsynIPPortConfigure("PP_PORT","$(IP_ADDR2)",0,0,0)
 drvAsynIPPortConfigure("ARD03_PORT","$(IP_ADDR3)",0,0,0)
 drvAsynIPPortConfigure("DMT340_1","$(IP_ADDR):502",0,0,1)
 drvAsynIPPortConfigure("LIDAR_PORT","$(IP_ADDR4)",0,0,0)
+drvAsynIPPortConfigure("FREIAPI04","$(IP_ADDR5)",0,0,0)
 
 modbusInterposeConfig("DMT340_1",0,1000,0)
 
@@ -51,6 +52,7 @@ dbLoadRecords "dmt340_meas.template", "P=$(DMT_PREFIX), PORT=DMT_DATA_F, SCAN=I/
 dbLoadRecords "tfromp.template", "P=CstatH-LHe, X=101"
 dbLoadRecords "tfromp.template", "P=CstatH-LHe, X=102"
 dbLoadRecords "from_rasp_pi.db"
+dbLoadRecords "weather.db", "PORT=FREIAPI04"
 dbLoadRecords "from_Labview.db"
 dbLoadRecords "PuddlePeeker.db", "P=Env-CstatV, DEV=WtrPuddle, LOW=2.0, PORT=PP_PORT"
 dbLoadRecords "GasTubeContainer.db", "P=Env-Container, DEV=TT001, HIGH=32.0, PORT=ARD03_PORT"

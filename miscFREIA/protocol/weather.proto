@@ -1,0 +1,26 @@
+Terminator = CR LF;
+
+get_pressure {
+   out "P?";
+   in "P %f";
+   ExtraInput=Ignore;
+}
+get_pressuret {
+   out "PT?";
+   in "PT %f";
+   ExtraInput=Ignore;
+}
+
+get_humidity {
+   out "H?";
+   in "H %f";
+   ExtraInput=Ignore;
+}
+
+get_humidityt {
+   out "HT?";
+   in "HT %f";
+   ExtraInput=Ignore;
+}
+
+
