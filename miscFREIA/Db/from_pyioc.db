@@ -1,0 +1,10 @@
+# From the Leak detector SoftIOC (192.168.10.137)
+#
+record(ai, "Cryo-VacSys:LeakDet-1:LeakRt") {
+   field (DESC, "Leak rate")
+   field (EGU, "mbarl/s")
+   field (DTYP, "Soft Channel")
+   field (PREC, "3")
+   field (INP, "Cryo-pyioc:LeakDet-1:LeakRt")
+   field (SCAN, "1 second")
+}
